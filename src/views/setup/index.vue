@@ -1,22 +1,7 @@
 <template>
   <div class="home">
-    <Hearder title="Vite + Vue3" />
-    <div class="text-6xl font-bold mt-10 text-green-500">Tailwindcss</div>
-    <div class="text-6xl font-bold mt-10 text-blue-500">TypeScript</div>
-    <div class="text-6xl font-bold mt-10 text-yellow-300 select-none">
-      {{ storeTitle }}
-
-      <span
-        class="bg-slate-300 rounded-md p-2 text-black cursor-pointer"
-        @click="stateAdd"
-      >
-        {{ newCount }}</span
-      >
-    </div>
-
-    <div class="text-3xl font-bold mt-10 text-red-400">
-      Focus on the business, build quickly , go!
-    </div>
+    <!-- <Hearder title="Vite + Vue3" />1 -->
+    1
   </div>
 </template>
  
@@ -59,12 +44,6 @@ const stateAdd = () => {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
 }
 </style>
