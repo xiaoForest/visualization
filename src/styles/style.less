@@ -1,0 +1,137 @@
+
+.home {
+    padding: 40px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    color: #2c3e50;
+    line-height: 1.2;
+    display: flex;
+    justify-content: space-between;
+
+    .boxes {
+        width: calc(33.33% - 15px);
+    }
+
+    .truck-area {
+        margin-top: 30px;
+
+        &:first-child {
+            margin-top: 0;
+        }
+
+        .top-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .case {
+                display: flex;
+                align-items: center;
+
+                .icon-square {
+                    margin-right: 10px;
+                    width: 32px;
+                    height: 32px;
+                    background: url('@/assets/icon-square.png') no-repeat;
+                    background-size: 32px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                
+                .text {
+                    h4 {
+                        font-weight: bold;
+                        font-size: 18px;
+                        background-image: -webkit-linear-gradient(top,#e6faff,#0ae5ff); 
+                        -webkit-background-clip: text; 
+                        -webkit-text-fill-color: transparent; 
+                    }
+
+                    span {
+                        font-size: 12px;
+                        text-transform: uppercase;
+                        background-image: -webkit-linear-gradient(top,#5cc2e0,#3f8af6); 
+                        -webkit-background-clip: text; 
+                        -webkit-text-fill-color: transparent; 
+                    }
+                } 
+
+                .icon-diamond {
+                    width: 70px;
+                    height: 33px;
+                    background: url('@/assets/icon-diamond.png') no-repeat;
+                    background-size: 70px;
+                }
+            }
+        }
+                    
+        &>.line {
+            position: relative;
+            margin-top: 6px;
+            height: 2px;
+            width: 100%;
+            background: linear-gradient(90deg,#00e4ff,#051339);
+            
+            &::after {
+                position: absolute;
+                content: "";
+                left: 4px;
+                top: 0;
+                width: 3px;
+                height: 2px;
+                background-color: #05082e;
+            }
+        }
+
+        .content-box {
+            margin-top: 20px;
+            background: #070b40;
+            border: 2px #1b2c7d solid;
+        }
+    }
+
+    .team-information {
+        padding: 30px;
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+
+            li {
+                margin: 10px 0;
+                width: 25%;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                justify-content: center;
+
+                .text {
+                    margin-bottom: 5px;
+                    font-size: 16px;
+                    color: #00a3f8;
+
+                    
+                }
+          
+
+                .hint {
+                    font-size: 22px;
+                    font-weight: bold;
+                    background-image: -webkit-linear-gradient(top,#eefadf,#10d043); 
+                    -webkit-background-clip: text; 
+                    -webkit-text-fill-color: transparent; 
+                    
+                    &.fault {
+                        background-image: -webkit-linear-gradient(top,#eefadf,#ff3b27); 
+                        -webkit-background-clip: text; 
+                        -webkit-text-fill-color: transparent; 
+         
+                    }
+                }
+            }
+        }
+    }
+
+}

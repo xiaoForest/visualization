@@ -4,8 +4,7 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
-    Card: typeof import('./components/common/Card.vue')['default']
-    WaterMark: typeof import('./components/common/WaterMark.vue')['default']
+    Svg: typeof import('./components/svg.vue')['default']
   }
 }
 
