@@ -1,3 +1,6 @@
+# 文档需求
+https://docs.qq.com/sheet/DUUt6Rmd2TnZmRnlC?scene=84090ff0e57e276238fcea3cxEeSp1&tab=BB08J2
+
 # 备选方案
  https://g2plot.antv.antgroup.com/zh/examples/case/customize#customize-tooltip
 
