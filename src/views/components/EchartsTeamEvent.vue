@@ -3,6 +3,7 @@
 </template>
 
 <script lang="ts" setup>
+import * as echarts from "echarts"
 import { Strong } from "mdast"
 import { defineComponent, onMounted, inject } from "vue"
 const props = defineProps({
@@ -15,10 +16,10 @@ onMounted(() => {
   change()
 })
 
-let echarts = inject<any>("echarts") // 主要
+// let echarts = inject<any>("echarts") // 主要
 // 基本柱形图
 const change = () => {
-  var chartDom = document.getElementById("echartsEvent")
+  var chartDom: any = document.getElementById("echartsEvent")
   const chartBox = echarts.init(chartDom, "dark", {
     renderer: "svg"
   }) // 主要
