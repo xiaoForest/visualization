@@ -65,10 +65,10 @@ const props = defineProps({
   }
 })
 let tabNum = ref<Number>(0)
-const tabNumber = computed(() => {
+const tabNumber = computed<any>(() => {
   return tabNum.value
 })
-const onTabFun = (i: Number) => {
+const onTabFun: any = (i: Number) => {
   tabNum.value = i
 }
 onMounted(() => {})
