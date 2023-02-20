@@ -1,8 +1,7 @@
 <template>
-  <div id="echartsSpecial"></div>
+  <div id="echartsEvent"></div>
 </template>
-  
- 
+
 <script lang="ts" setup>
 import { Strong } from "mdast"
 import { defineComponent, onMounted, inject } from "vue"
@@ -19,14 +18,14 @@ onMounted(() => {
 let echarts = inject<any>("echarts") // 主要
 // 基本柱形图
 const change = () => {
-  var chartDom = document.getElementById("echartsSpecial")
+  var chartDom = document.getElementById("echartsEvent")
   const chartBox = echarts.init(chartDom, "dark", {
     renderer: "svg"
   }) // 主要
 
   let arr = props.TheList
   let data = ["score", "amount", "product"]
-  let colorStyle: number[] = [22.1, 33.2, 44.3, 55.4, 66.5, 77.6]
+  let colorStyle: number[] = [22.1, 33.2, 44.3]
   arr.map((e: any, idx) => e.unshift(colorStyle[idx]))
   let dataSource = [data, ...arr]
   const option = {
@@ -41,9 +40,9 @@ const change = () => {
       show: false,
       orient: "horizontal",
       left: "center",
-      height: "10",
-      min: 10,
-      max: 100,
+      height: "1",
+      min: 210,
+      max: 10,
       // Map the score column to color
       dimension: 0
     },
@@ -91,9 +90,8 @@ const change = () => {
 </script>
 
 <style scoped lang="less">
-#echartsSpecial {
+#echartsEvent {
   min-width: 100%;
-  min-height: 500px;
+  min-height: 300px;
 }
 </style>
- 
