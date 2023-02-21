@@ -1,17 +1,93 @@
 <template>
   <div id="echartsEvent"></div>
+  <div class="tc_mod" :class="{ show: popupShow == true }">
+    <div class="bg" ref="divRef"></div>
+    <div class="tc-information">
+      <div class="title">{{ tcTitle }}</div>
+
+      <div class="tableTitle" :class="{ change: tcList.length > 10 }">
+        <table class="tableStyle one">
+          <thead>
+            <tr>
+              <th :width="item.width" v-for="(item, index) in tcTabs">
+                {{ item.name }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ tcList[0].id }}</td>
+              <td>{{ tcList[0].title }}</td>
+              <td>{{ tcList[0].name }}</td>
+              <td>{{ tcList[0].time }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tableScroll" style="height: 400px">
+        <table class="tableStyle two">
+          <thead>
+            <tr>
+              <th :width="item.width" v-for="(item, index) in tcTabs">
+                {{ item.name }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(item, index) in tcList">
+              <td>{{ index + 1 }}</td>
+              <td>{{ item.title }}</td>
+              <td>{{ item.name }}</td>
+              <td>{{ item.time }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="icon-close" @click="popupShow = false">
+      <svg class="icon-svg"><use xlink:href="#svg-close"></use></svg>
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
 import * as echarts from "echarts"
 import { Strong } from "mdast"
-import { defineComponent, onMounted, inject } from "vue"
+import { defineComponent, onMounted, inject, ref } from "vue"
+import { useEventListener } from "vue-hooks-plus"
 const props = defineProps({
   TheList: {
     type: Array,
     default: []
   }
 })
+
+let tcTabs = ref([
+  {
+    name: "序号",
+    width: "10%"
+  },
+  {
+    name: "标题",
+    width: ""
+  },
+  {
+    name: "处理人",
+    width: ""
+  },
+  {
+    name: "处理时间",
+    width: ""
+  }
+])
+let tcList = ref([
+  {
+    id: 1,
+    title: "坏了",
+    name: "张三丰",
+    time: "2023-05-05 12:32"
+  }
+])
 onMounted(() => {
   change()
 })
@@ -77,8 +153,9 @@ const change = () => {
       // 背景色
       backgroundColor: "rgba(0,0,0,0)",
       formatter: function (params: any) {
-        console.log("弹窗")
-        return console.log(params)
+        popupShow.value = true
+        tcMainId.value = params.dataIndex
+        tcTitle.value = params.data[2]
       }
     }
   }
@@ -88,6 +165,18 @@ const change = () => {
     chartBox.resize()
   })
 }
+
+let popupShow = ref<boolean>(false)
+let tcMainId = ref<string>("")
+let tcTitle = ref<string>("")
+const divRef = ref()
+useEventListener(
+  "click",
+  () => {
+    popupShow.value = false
+  },
+  { target: divRef }
+)
 </script>
 
 <style scoped lang="less">

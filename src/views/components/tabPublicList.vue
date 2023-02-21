@@ -143,7 +143,7 @@ useEventListener(
   { target: divRef }
 )
 
-const onTcMod = (i: any, index: any) => {
+const onTcMod = (i: any, index: Number) => {
   popupShow.value = true
   tcTitle.value = i.title
   tcText.value = i.details
@@ -185,74 +185,6 @@ const onTcMod = (i: any, index: any) => {
         }
       }
     }
-  }
-  .public-list {
-    padding: 0;
-    margin: 0;
-
-    position: relative;
-    &.title {
-      li {
-        background: #1732b2 !important;
-      }
-    }
-    &.list {
-      overflow: auto;
-      height: (34px) * 10;
-      li {
-        cursor: pointer;
-      }
-    }
-    li {
-      position: relative;
-      padding: 10px 20px;
-      color: #9ec7ff;
-      font-size: 14px;
-
-      display: flex;
-      align-items: center;
-      transition: all 0.3s ease;
-      &:nth-child(2n + 1) {
-        background: #0a135b;
-      }
-      > div {
-        position: relative;
-        z-index: 10;
-        line-height: 1.4;
-        &:nth-child(1) {
-          width: 6%;
-          text-align: center;
-        }
-        &:nth-child(2) {
-          padding: 0 20px;
-          width: 47%;
-        }
-        &:nth-child(3) {
-          width: 27%;
-        }
-        &:nth-child(4) {
-          width: 14%;
-        }
-      }
-      &:after {
-        position: absolute;
-        z-index: 1;
-        content: "";
-        display: block;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, #1732b2 50%, #0a135b);
-        opacity: 0;
-        transition: all 0.3s ease;
-      }
-      &:hover {
-        &:after {
-          opacity: 1;
-        }
-      }
-    }
-  }
+  } 
 }
 </style>

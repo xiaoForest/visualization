@@ -11,53 +11,97 @@
         {{ item.name }}
       </div>
     </div>
-    <ul class="serve-list title" v-if="tabNumber == 2">
-      <li>
-        <div class="num" style="width: 10%">序号</div>
-        <div class="text" style="width: 30%">号码</div>
-        <div class="time" style="width: 50%">说明</div>
-      </li>
-    </ul>
-    <ul class="serve-list title" v-else>
-      <li>
-        <div class="num">序号</div>
-        <div class="text">标题</div>
-        <div class="time">发布时间</div>
-        <div class="people">已读人数</div>
-      </li>
-    </ul>
 
-    <ul class="serve-list list" v-show="tabNumber == 0">
-      <li v-for="(item, index) in TheList[0].list" :key="index">
-        <div class="num">{{ index + 1 }}</div>
-        <div class="text">{{ item.text }}</div>
-        <div class="text">{{ item.time }}</div>
-        <div class="people">{{ item.value }}人</div>
-      </li>
-    </ul>
+    <div class="tableTitle change">
+      <table class="tableStyle one">
+        <thead>
+          <tr v-if="tabNumber == 2">
+            <th :width="item.width" v-for="(item, index) in TheTabs1">
+              {{ item.name }}
+            </th>
+          </tr>
+          <tr v-else>
+            <th :width="item.width" v-for="(item, index) in TheTabs2">
+              {{ item.name }}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ TheList[0].id }}</td>
+            <td>{{ TheList[0].text }}</td>
+            <td>{{ TheList[0].time }}</td>
+            <td>{{ TheList[0].value }}人</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tableScroll cp" style="height: 400px">
+      <table class="tableStyle two">
+        <thead>
+          <tr v-if="tabNumber == 2">
+            <th :width="item.width" v-for="(item, index) in TheTabs1">
+              {{ item.name }}
+            </th>
+          </tr>
+          <tr v-else>
+            <th :width="item.width" v-for="(item, index) in TheTabs2">
+              {{ item.name }}
+            </th>
+          </tr>
+        </thead>
+        <tbody v-show="tabNumber == 0">
+          <tr
+            v-for="(item, index) in TheList[0].list"
+            @click="onTcMod(item, index)"
+          >
+            <td>{{ index + 1 }}</td>
+            <td>{{ item.text }}</td>
+            <td>{{ item.time }}</td>
+            <td>{{ item.value }}人</td>
+          </tr>
+        </tbody>
+        <tbody v-show="tabNumber == 1">
+          <tr
+            v-for="(item, index) in TheList[1].list"
+            @click="onTcMod(item, index)"
+          >
+            <td>{{ index + 1 }}</td>
+            <td>{{ item.text }}</td>
+            <td>{{ item.time }}</td>
+            <td>{{ item.value }}人</td>
+          </tr>
+        </tbody>
+        <tbody v-show="tabNumber == 2">
+          <tr
+            v-for="(item, index) in TheList[2].list"
+            @click="onTcMod(item, index)"
+          >
+            <td>{{ index + 1 }}</td>
+            <td>{{ item.phone }}</td>
+            <td>{{ item.text }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
-    <ul class="serve-list list" v-show="tabNumber == 1">
-      <li v-for="(item, index) in TheList[1].list" :key="index">
-        <div class="num">{{ index + 1 }}</div>
-        <div class="text">{{ item.text }}</div>
-        <div class="text">{{ item.time }}</div>
-        <div class="people">{{ item.value }}人</div>
-      </li>
-    </ul>
-
-    <ul class="serve-list list" v-show="tabNumber == 2">
-      <li v-for="(item, index) in TheList[2].list" :key="index">
-        <div class="num" style="width: 10%">{{ index + 1 }}</div>
-        <div class="phone" style="width: 30%">{{ item.phone }}</div>
-        <div class="text" style="width: 50%">{{ item.text }}</div>
-      </li>
-    </ul>
+  <div class="tc_mod" :class="{ show: popupShow == true }">
+    <div class="bg" ref="divRef"></div>
+    <div class="tc-information">
+      <div class="title">{{ tcTitle }}</div>
+      <div class="text" v-html="tcText"></div>
+    </div>
+    <div class="icon-close" @click="popupShow = false">
+      <svg class="icon-svg"><use xlink:href="#svg-close"></use></svg>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { Strong } from "mdast"
 import { defineComponent, onMounted, inject, computed, ref } from "vue"
+import { useEventListener } from "vue-hooks-plus"
 const props = defineProps({
   TheList: {
     type: Object,
@@ -65,13 +109,67 @@ const props = defineProps({
   }
 })
 let tabNum = ref<Number>(0)
+let tabMainId = ref<Number>(0)
 const tabNumber = computed<any>(() => {
   return tabNum.value
 })
-const onTabFun: any = (i: Number) => {
+const onTabFun: any = (i: Number, index: number) => {
   tabNum.value = i
+  tabMainId.value = index
 }
+
+let TheTabs1 = ref([
+  {
+    name: "序号",
+    width: "12%"
+  },
+  {
+    name: "号码",
+    width: "38%"
+  },
+  {
+    name: "说明",
+    width: ""
+  }
+])
+let TheTabs2 = ref([
+  {
+    name: "序号",
+    width: "12%"
+  },
+  {
+    name: "标题",
+    width: "28%"
+  },
+  {
+    name: "发布时间",
+    width: "30%"
+  },
+  {
+    name: "已读人数",
+    width: "30%"
+  }
+])
 onMounted(() => {})
+
+let popupShow = ref<boolean>(false)
+let tcTitle = ref<String>("")
+let tcText = ref<String>("")
+
+const divRef = ref()
+useEventListener(
+  "click",
+  () => {
+    popupShow.value = false
+  },
+  { target: divRef }
+)
+
+const onTcMod = (i: any, index: Number) => {
+  popupShow.value = true
+  tcTitle.value = i.title
+  tcText.value = i.details
+}
 </script>
 
 <style scoped lang="less">
@@ -106,76 +204,6 @@ onMounted(() => {})
         &:after {
           opacity: 1;
           width: 50%;
-        }
-      }
-    }
-  }
-  .serve-list {
-    padding: 0;
-    margin: 0;
-
-    position: relative;
-    &.title {
-      li {
-        background: #1732b2 !important;
-      }
-    }
-    &.list {
-      overflow: auto;
-      height: (34px) * 10;
-      li {
-        cursor: pointer;
-      }
-    }
-    li {
-      position: relative;
-
-      padding: 10px 20px;
-      color: #9ec7ff;
-      font-size: 14px;
-
-      display: flex;
-      align-items: center;
-      transition: all 0.3s ease;
-
-      &:nth-child(2n + 1) {
-        background: #0a135b;
-      }
-      > div {
-        position: relative;
-        z-index: 10;
-        line-height: 1.4;
-        &:nth-child(1) {
-          width: 6%;
-          text-align: center;
-        }
-        &:nth-child(2) {
-          padding: 0 20px;
-          width: 47%;
-        }
-        &:nth-child(3) {
-          width: 27%;
-        }
-        &:nth-child(4) {
-          width: 14%;
-        }
-      }
-      &:after {
-        position: absolute;
-        z-index: 1;
-        content: "";
-        display: block;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, #1732b2 50%, #0a135b);
-        opacity: 0;
-        transition: all 0.3s ease;
-      }
-      &:hover {
-        &:after {
-          opacity: 1;
         }
       }
     }
