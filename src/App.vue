@@ -9,7 +9,7 @@
     </div>
   </div>
 
-  <!-- <svg class="icon-svg"><use xlink:href="#svg-information"></use></svg> -->
+  <!-- <svg class="icon-svg"><use xlink:href="#svg-close"></use></svg> -->
   <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" display="none">
     <symbol id="svg-information" viewBox="0 0 1028 1024">
       <path
@@ -23,21 +23,29 @@
         fill=""
       ></path>
     </symbol>
+    <symbol id="svg-close" viewBox="0 0 1028 1024">
+      <path
+        d="M453.44 512L161.472 220.032a41.408 41.408 0 0 1 58.56-58.56L512 453.44 803.968 161.472a41.408 41.408 0 0 1 58.56 58.56L570.56 512l291.968 291.968a41.408 41.408 0 0 1-58.56 58.56L512 570.56 220.032 862.528a41.408 41.408 0 0 1-58.56-58.56L453.44 512z"
+        fill=""
+        p-id="10961"
+      ></path>
+    </symbol>
   </svg>
 </template>
 
 <script lang="ts" setup>
 import * as echarts from "echarts"
 import { provide } from "vue"
-provide("echarts", echarts)
+ 
 </script>
 
- 
-<style>
+<style lang="less">
 @import "./styles/basic.less";
-
+@import "@/styles/style.less";
+@import "./styles/tc.less";
 #app {
   width: 100%;
   height: 100%;
 }
+
 </style>

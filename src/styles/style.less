@@ -86,6 +86,7 @@
         }
 
         .content-box {
+            position: relative;
             margin-top: 20px;
             background: #070b40;
             border: 2px #1b2c7d solid;
@@ -134,4 +135,118 @@
         }
     }
 
+
+}
+
+.tableTitle {
+    background: #1732b2;
+
+    &.change {
+        padding-right: 5px;
+    }
+}
+  
+.tableScroll {
+    overflow-y: auto;
+}
+  
+.tableStyle {
+    width: 100%;
+    text-align: left;
+  
+    &.one {
+        tbody {
+            visibility: collapse;
+        }
+    }
+  
+    &.two {
+        thead {
+            visibility: collapse;
+        }
+    }
+  
+    thead { 
+        position: relative; 
+  
+        tr {
+            background: #1732b2;
+       
+            th {
+                padding: 0 20px;
+                height: 34px;
+                color: #9ec7ff;
+                font-size: 14px;
+            }
+        }
+    }
+  
+    tbody {   
+        position: relative;
+   
+        tr {
+            position: relative;
+  
+            &:nth-child(2n + 2) {
+                background: #0a135b;
+            }
+  
+            td {
+                position: relative;
+                padding: 10px 20px;
+                color: #9ec7ff;
+                font-size: 14px;
+                line-height: 1.4;
+            }
+        
+            &:hover {
+                .info {
+                    opacity: 1;
+  
+                    &>div {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                }
+            }
+  
+            .info {
+                position: absolute;
+                top: 20px;
+                right: 0;
+                opacity: 0;
+                overflow: hidden;
+                z-index: 5;
+  
+                &>div {
+                    background: #1732b2;
+                    border-radius: 4px;
+                    padding: 16px;
+                    color: #606266;
+                    line-height: 1.4;
+                    text-align: justify;
+                    font-size: 14px;
+                    box-shadow: -10px -12px 12px -12px rgb(0 0 0 / 20%);
+                    word-break: break-all;
+                    transition: all 1s ease;
+                    transform: translateX(200px);  
+                    opacity: 0;
+                }
+  
+                h4 {
+                    font-size: 16px;
+                    line-height: 1.6;
+                    font-weight: bold;
+                    color: #fff;
+                }
+  
+                span {
+                    color: #fff;
+                    display: block;
+                    font-size: 16px;
+                    line-height: 1.6;
+                }
+            }
+        }
+    }
 }

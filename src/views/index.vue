@@ -599,5 +599,5 @@ onMounted(() => {})
 </script>
 
 <style scoped lang="less">
-@import "@/styles/style.less";
+
 </style>

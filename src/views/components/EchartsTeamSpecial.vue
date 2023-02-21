@@ -1,22 +1,121 @@
 <template>
   <div id="echartsSpecial"></div>
+  <div class="tc_mod" :class="{ show: popupShow == true }">
+    <div class="bg" ref="divRef"></div>
+    <div class="tc-information">
+      <div class="title">{{ tcTitle }}</div>
+
+      <div class="tableTitle" :class="{ change: tcList.length > 10 }">
+        <table class="tableStyle one">
+          <thead>
+            <tr>
+              <th :width="item.width" v-for="(item, index) in tcTabs">
+                {{ item.name }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ tcList[0].id }}</td>
+              <td>{{ tcList[0].name }}</td>
+              <td>{{ tcList[0].gender }}</td>
+              <td>{{ tcList[0].principal }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tableScroll" style="height: 400px">
+        <table class="tableStyle two">
+          <thead>
+            <tr>
+              <th :width="item.width" v-for="(item, index) in tcTabs">
+                {{ item.name }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(item, index) in tcList">
+              <td>{{ index + 1 }}</td>
+              <td>{{ item.name }}</td>
+              <td>{{ item.gender }}</td>
+              <td>
+                {{ item.principal }}
+              </td>
+              <div class="info">
+                <div>
+                  <h4>{{ item.name }}</h4>
+                  <span>性别：{{ item.gender }}</span>
+                  <span>负责人：{{ item.principal }}</span>
+                  <span>地址：{{ item.address }}</span>
+                </div>
+              </div>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="icon-close" @click="popupShow = false">
+      <svg class="icon-svg"><use xlink:href="#svg-close"></use></svg>
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
 import * as echarts from "echarts"
 import { Strong } from "mdast"
-import { defineComponent, onMounted, inject } from "vue"
+import { defineComponent, onMounted, inject, ref } from "vue"
+import { useEventListener } from "vue-hooks-plus"
 const props = defineProps({
   TheList: {
     type: Array,
     default: []
   }
 })
+let tcTabs = ref([
+  {
+    name: "序号",
+    width: "10%"
+  },
+  {
+    name: "姓名",
+    width: "40%"
+  },
+  {
+    name: "性别",
+    width: "25%"
+  },
+  {
+    name: "负责人",
+    width: "25%"
+  }
+])
+let tcList = ref([
+  {
+    id: 1,
+    name: "张三峰",
+    gender: "男",
+    principal: "丁大哥",
+    address: "北京市朝阳区百子湾南二路78号反黑"
+  },
+  {
+    id: 1,
+    name: "张三峰",
+    gender: "男",
+    principal: "丁大哥",
+    address: "北京市朝阳区百子湾南二路78号反黑"
+  },
+  {
+    id: 1,
+    name: "张三峰",
+    gender: "男",
+    principal: "丁大哥",
+    address: "北京市朝阳区百子湾南二路78号反黑"
+  }
+])
 onMounted(() => {
   change()
 })
 
-// let echarts = inject<any>("echarts") // 主要
 // 基本柱形图
 const change = () => {
   var chartDom: any = document.getElementById("echartsSpecial")
@@ -77,8 +176,9 @@ const change = () => {
       // 背景色
       backgroundColor: "rgba(0,0,0,0)",
       formatter: function (params: any) {
-        console.log("弹窗")
-        return console.log(params)
+        popupShow.value = true
+        tcMainId.value = params.dataIndex
+        tcTitle.value = params.data[2]
       }
     }
   }
@@ -88,6 +188,18 @@ const change = () => {
     chartBox.resize()
   })
 }
+
+let popupShow = ref<boolean>(false)
+let tcMainId = ref<string>("")
+let tcTitle = ref<string>("")
+const divRef = ref()
+useEventListener(
+  "click",
+  () => {
+    popupShow.value = false;
+  },
+  { target: divRef }
+)
 </script>
 
 <style scoped lang="less">
@@ -95,4 +207,6 @@ const change = () => {
   min-width: 100%;
   min-height: 500px;
 }
+
+
 </style>

@@ -1,17 +1,154 @@
 <template>
   <div id="echartsRepairs"></div>
+  <div class="tc_mod" :class="{ show: popupShow == true }">
+    <div class="bg" ref="divRef"></div>
+    <div class="tc-information">
+      <div class="title">{{ tcTitle }}</div>
+      <div class="tableTitle" :class="{ change: tcList.length > 10 }">
+        <table class="tableStyle one">
+          <thead>
+            <tr>
+              <th :width="item.width" v-for="(item, index) in tcTabs">
+                {{ item.name }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ tcList[0].id }}</td>
+              <td>{{ tcList[0].describe }}</td>
+              <td>{{ tcList[0].name }}</td>
+              <td>{{ tcList[0].type }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tableScroll" style="height: 400px">
+        <table class="tableStyle two">
+          <thead>
+            <tr>
+              <th :width="item.width" v-for="(item, index) in tcTabs">
+                {{ item.name }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(item, index) in tcList">
+              <td>{{ index + 1 }}</td>
+              <td>{{ item.describe }}</td>
+              <td>{{ item.name }}</td>
+              <td>{{ item.type }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="icon-close" @click="popupShow = false">
+      <svg class="icon-svg"><use xlink:href="#svg-close"></use></svg>
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
 import * as echarts from "echarts"
 import { Strong } from "mdast"
 import { defineComponent, onMounted, inject } from "vue"
+import { useEventListener } from "vue-hooks-plus"
+
 const props = defineProps({
   TheList: {
     type: Array,
     default: []
   }
 })
+
+let tcTabs = ref([
+  {
+    name: "序号",
+    width: "30"
+  },
+  {
+    name: "描述",
+    width: "60%"
+  },
+  {
+    name: "上报人",
+    width: ""
+  },
+  {
+    name: "处理状态",
+    width: ""
+  }
+])
+
+let tcList = ref([
+  {
+    id: 1,
+    describe: "三单元门口了路灯损坏 丁老头",
+    name: "张三峰",
+    type: "待处理"
+  },
+  {
+    id: 1,
+    describe: "三单元门口了路灯损坏三单元门口了路灯损坏 丁老头",
+    name: "张三峰",
+    type: "处理中"
+  },
+  {
+    id: 1,
+    describe: "三单元门口了路灯损坏 丁老头",
+    name: "张三峰",
+    type: "已处理"
+  },
+  {
+    id: 1,
+    describe: "三单元门口了路灯损坏 丁老头",
+    name: "张三峰",
+    type: "待处理"
+  },
+  {
+    id: 1,
+    describe: "三单元门口了路灯损坏 丁老头",
+    name: "张三峰",
+    type: "处理中"
+  },
+  {
+    id: 1,
+    describe: "三单元门口了路灯损坏 丁老头",
+    name: "张三峰",
+    type: "已处理"
+  },
+  {
+    id: 1,
+    describe: "三单元门口了路灯损坏 丁老头",
+    name: "张三峰",
+    type: "待处理"
+  },
+  {
+    id: 1,
+    describe: "三单元门口了路灯损坏 丁老头",
+    name: "张三峰",
+    type: "处理中"
+  },
+  {
+    id: 1,
+    describe: "三单元门口了路灯损坏 丁老头",
+    name: "张三峰",
+    type: "已处理"
+  },
+  {
+    id: 1,
+    describe: "三单元门口了路灯损坏 丁老头",
+    name: "张三峰",
+    type: "已处理"
+  },
+  {
+    id: 1,
+    describe: "三单元门口了路灯损坏 丁老头",
+    name: "张三峰",
+    type: "已处理"
+  }
+])
 onMounted(() => {
   change()
 })
@@ -26,9 +163,6 @@ const change = () => {
 
   const option = {
     backgroundColor: "#070b40", //背景色
-    tooltip: {
-      trigger: "item"
-    },
     legend: {
       top: "5%",
       left: "center"
@@ -69,7 +203,24 @@ const change = () => {
         },
         data: props.TheList
       }
-    ]
+    ],
+    tooltip: {
+      // 鼠标是否可以进入悬浮框
+      enterable: true,
+      // 触发方式 mousemove, click, none, mousemove|click
+      triggerOn: "click",
+      // item 图形触发， axis 坐标轴触发， none 不触发
+      trigger: "item",
+      // 浮层隐藏的延迟
+      hideDelay: 800,
+      // 背景色
+      backgroundColor: "rgba(0,0,0,0)",
+      formatter: function (params: any) {
+        popupShow.value = true
+        tcMainId.value = params.dataIndex
+        tcTitle.value = params.data.name
+      }
+    }
   }
   chartBox.setOption(option)
   // 根据页面大小自动响应图表大小
@@ -77,6 +228,18 @@ const change = () => {
     chartBox.resize()
   })
 }
+
+let popupShow = ref<boolean>(false)
+let tcMainId = ref<string>("")
+let tcTitle = ref<string>("")
+const divRef = ref()
+useEventListener(
+  "click",
+  () => {
+    popupShow.value = false
+  },
+  { target: divRef }
+)
 </script>
 
 <style scoped lang="less">
@@ -84,4 +247,6 @@ const change = () => {
   min-width: 100%;
   min-height: 500px;
 }
+
+
 </style>
