@@ -41,7 +41,10 @@
           </tr>
         </thead>
         <tbody v-show="tabNumber == 0">
-          <tr v-for="(item, index) in TheList[0].list" @click="onTcMod(item)">
+          <tr
+            v-for="(item, index) in TheList[0].list"
+            @click="onTcMod(item, index)"
+          >
             <td>{{ index + 1 }}</td>
             <td>{{ item.text }}</td>
             <td>{{ item.time }}</td>
@@ -49,7 +52,10 @@
           </tr>
         </tbody>
         <tbody v-show="tabNumber == 1">
-          <tr v-for="(item, index) in TheList[1].list" @click="onTcMod(item)">
+          <tr
+            v-for="(item, index) in TheList[1].list"
+            @click="onTcMod(item, index)"
+          >
             <td>{{ index + 1 }}</td>
             <td>{{ item.text }}</td>
             <td>{{ item.time }}</td>
@@ -57,7 +63,10 @@
           </tr>
         </tbody>
         <tbody v-show="tabNumber == 2">
-          <tr v-for="(item, index) in TheList[2].list" @click="onTcMod(item)">
+          <tr
+            v-for="(item, index) in TheList[2].list"
+            @click="onTcMod(item, index)"
+          >
             <td>{{ index + 1 }}</td>
             <td>{{ item.text }}</td>
             <td>{{ item.time }}</td>
@@ -134,8 +143,7 @@ useEventListener(
   { target: divRef }
 )
 
-const onTcMod = (i: Object, index: Number) => {
-  console.log(i)
+const onTcMod = (i: any, index: any) => {
   popupShow.value = true
   tcTitle.value = i.title
   tcText.value = i.details
