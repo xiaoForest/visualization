@@ -204,8 +204,9 @@ useEventListener(
 
 <style scoped lang="less">
 #echartsSpecial {
+  padding-top: 10px;
   min-width: 100%;
-  min-height: 500px;
+  min-height: 300px;
 }
 
 

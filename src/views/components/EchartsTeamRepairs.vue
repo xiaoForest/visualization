@@ -181,8 +181,8 @@ const change = () => {
         emphasis: {
           label: {
             show: true,
-            fontSize: 12
-            // fontWeight: "bold"
+            fontSize: 18,
+            fontWeight: "bold"
           }
         },
         labelLine: {
@@ -191,12 +191,12 @@ const change = () => {
         label: {
           alignTo: "edge",
           formatter: "{name|{b}}\n{time|{c} }",
-          minMargin: 2,
-          edgeDistance: 60,
-          lineHeight: 15,
+          minMargin: 10,
+          edgeDistance: 100,
+          lineHeight: 25,
           rich: {
             time: {
-              fontSize: 10,
+              fontSize: 14,
               color: "#fff"
             }
           }
@@ -244,8 +244,9 @@ useEventListener(
 
 <style scoped lang="less">
 #echartsRepairs {
+  padding-top: 30px;
   min-width: 100%;
-  min-height: 500px;
+  height: 300px;
 }
 
 

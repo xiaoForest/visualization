@@ -87,8 +87,8 @@
               <img src="@/assets/icon-box1.png" alt="" />
             </i>
             <div class="text">
-              <h4>社区保修</h4>
-              <span>Community warranty</span>
+              <h4>社区报修</h4>
+              <span>Community report for repair</span>
             </div>
           </div>
           <div class="case">
@@ -144,7 +144,9 @@
           </div>
         </div>
         <div class="line"></div>
-        <div class="content-box"></div>
+        <div class="content-box">
+          <videoStreaming :TheList="videoSource"></videoStreaming>
+        </div>
       </div>
       <div class="truck-area">
         <div class="top-title">
@@ -248,6 +250,7 @@ import tabServeList from "./components/tabServeList.vue"
 import GridInformation from "./components/gridInformation.vue"
 import EchartsTeamEvent from "./components/EchartsTeamEvent.vue"
 import GridOpinions from "./components/GridOpinions.vue"
+import videoStreaming from "./components/videoStreaming.vue"
 
 const store = useHomeStore()
 const storeTitle = computed(() => store.getFuncTitle)
@@ -688,6 +691,57 @@ let TheOpinionsList = ref([
     type: "未处理",
     details:
       "<p>useDrop 可以单独使用来接收文件、文字和网址的拖拽。useDrag 允许一个 DOM 节点被拖拽，需要配合 useDrop 使用。向节点内触发粘贴动作也会被视为拖拽。</p>"
+  }
+])
+
+let videoSource = ref([
+  {
+    src: "/src/assets/1.mp4",
+    resolution: "360p"
+  },
+  {
+    src: "/src/assets/2.mp4",
+    resolution: "720p"
+  },
+  {
+    src: "/src/assets/3.mp4",
+    resolution: "1080p"
+  },
+  {
+    src: "/src/assets/4.mp4",
+    resolution: "360p"
+  },
+  {
+    src: "/src/assets/5.mp4",
+    resolution: "720p"
+  },
+  {
+    src: "/src/assets/1.mp4",
+    resolution: "1080p"
+  },
+  {
+    src: "/src/assets/2.mp4",
+    resolution: "360p"
+  },
+  {
+    src: "/src/assets/3.mp4",
+    resolution: "720p"
+  },
+  {
+    src: "/src/assets/4.mp4",
+    resolution: "1080p"
+  },
+  {
+    src: "/src/assets/5.mp4",
+    resolution: "360p"
+  },
+  {
+    src: "/src/assets/1.mp4",
+    resolution: "720p"
+  },
+  {
+    src: "/src/assets/2.mp4",
+    resolution: "1080p"
   }
 ])
 
