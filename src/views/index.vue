@@ -1,236 +1,245 @@
 <template>
-  <div class="home">
-    <!-- 社区管理可视化 -->
-    <div class="boxes">
-      <div class="truck-area">
-        <div class="top-title">
-          <div class="case">
-            <i class="icon-square">
-              <img src="@/assets/icon-box1.png" alt="" />
-            </i>
-            <div class="text">
-              <h4>住户信息</h4>
-              <span>Household information</span>
+  <div>
+    <div class="headTitle">
+      <img src="@/assets/headTitle.png" alt="" />
+    </div>
+    <div class="home">
+      <!-- 社区管理可视化 -->
+      <div class="boxes">
+        <div class="truck-area">
+          <div class="top-title">
+            <div class="case">
+              <i class="icon-square">
+                <img src="@/assets/icon-box1.png" alt="" />
+              </i>
+              <div class="text">
+                <h4>住户信息</h4>
+                <span>Household information</span>
+              </div>
+            </div>
+            <div class="case">
+              <i class="icon-diamond"></i>
             </div>
           </div>
-          <div class="case">
-            <i class="icon-diamond"></i>
-          </div>
-        </div>
-        <div class="line"></div>
-        <div class="content-box">
-          <div class="team-information">
-            <ul>
-              <li>
-                <span class="text">设备状态</span>
-                <span class="hint">正常</span>
-              </li>
-              <li>
-                <span class="text">设备状态</span>
-                <span class="hint">正常</span>
-              </li>
-              <li>
-                <span class="text">设备状态</span>
-                <span class="hint fault">故障</span>
-              </li>
-              <li>
-                <span class="text">设备状态</span>
-                <span class="hint fault">故障</span>
-              </li>
-              <li>
-                <span class="text">房屋数量</span>
-                <span class="hint">54884</span>
-              </li>
-              <li>
-                <span class="text">居民数量</span>
-                <span class="hint">54884</span>
-              </li>
-              <li>
-                <span class="text">房主数量</span>
-                <span class="hint">54884</span>
-              </li>
-              <li>
-                <span class="text">租户数量</span>
-                <span class="hint">54884</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="truck-area">
-        <div class="top-title">
-          <div class="case">
-            <i class="icon-square">
-              <img src="@/assets/icon-box1.png" alt="" />
-            </i>
-            <div class="text">
-              <h4>特殊人群</h4>
-              <span>special crowd</span>
+          <div class="line"></div>
+          <div class="content-box">
+            <div class="team-information">
+              <ul>
+                <li>
+                  <span class="text">设备状态</span>
+                  <span class="hint">正常</span>
+                </li>
+                <li>
+                  <span class="text">设备状态</span>
+                  <span class="hint">正常</span>
+                </li>
+                <li>
+                  <span class="text">设备状态</span>
+                  <span class="hint fault">故障</span>
+                </li>
+                <li>
+                  <span class="text">设备状态</span>
+                  <span class="hint fault">故障</span>
+                </li>
+                <li>
+                  <span class="text">房屋数量</span>
+                  <span class="hint">54884</span>
+                </li>
+                <li>
+                  <span class="text">居民数量</span>
+                  <span class="hint">54884</span>
+                </li>
+                <li>
+                  <span class="text">房主数量</span>
+                  <span class="hint">54884</span>
+                </li>
+                <li>
+                  <span class="text">租户数量</span>
+                  <span class="hint">54884</span>
+                </li>
+              </ul>
             </div>
           </div>
-          <div class="case">
-            <i class="icon-diamond"></i>
-          </div>
         </div>
-        <div class="line"></div>
-        <div class="content-box">
-          <div class="team-special">
-            <!-- 特殊人群 -->
-            <EchartsTeamSpecial :TheList="TheSpecialList"></EchartsTeamSpecial>
-          </div>
-        </div>
-      </div>
-      <div class="truck-area">
-        <div class="top-title">
-          <div class="case">
-            <i class="icon-square">
-              <img src="@/assets/icon-box1.png" alt="" />
-            </i>
-            <div class="text">
-              <h4>社区报修</h4>
-              <span>Community report for repair</span>
+        <div class="truck-area">
+          <div class="top-title">
+            <div class="case">
+              <i class="icon-square">
+                <img src="@/assets/icon-box1.png" alt="" />
+              </i>
+              <div class="text">
+                <h4>特殊人群</h4>
+                <span>special crowd</span>
+              </div>
+            </div>
+            <div class="case">
+              <i class="icon-diamond"></i>
             </div>
           </div>
-          <div class="case">
-            <i class="icon-diamond"></i>
+          <div class="line"></div>
+          <div class="content-box">
+            <div class="team-special">
+              <!-- 特殊人群 -->
+              <EchartsTeamSpecial
+                :TheList="TheSpecialList"
+              ></EchartsTeamSpecial>
+            </div>
           </div>
         </div>
-        <div class="line"></div>
-        <div class="content-box">
-          <div class="team-repairs">
-            <EchartsTeamRepairs :TheList="TheRepairsList"></EchartsTeamRepairs>
+        <div class="truck-area">
+          <div class="top-title">
+            <div class="case">
+              <i class="icon-square">
+                <img src="@/assets/icon-box1.png" alt="" />
+              </i>
+              <div class="text">
+                <h4>社区报修</h4>
+                <span>Community report for repair</span>
+              </div>
+            </div>
+            <div class="case">
+              <i class="icon-diamond"></i>
+            </div>
+          </div>
+          <div class="line"></div>
+          <div class="content-box">
+            <div class="team-repairs">
+              <EchartsTeamRepairs
+                :TheList="TheRepairsList"
+              ></EchartsTeamRepairs>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- tab 社区公告 政府通知 用户信息 -->
-      <div class="truck-area">
-        <div class="top-title">
-          <div class="case">
-            <i class="icon-square">
-              <img src="@/assets/icon-box1.png" alt="" />
-            </i>
-            <div class="text">
-              <h4>公告通知</h4>
-              <span>Public notice</span>
+        <!-- tab 社区公告 政府通知 用户信息 -->
+        <div class="truck-area">
+          <div class="top-title">
+            <div class="case">
+              <i class="icon-square">
+                <img src="@/assets/icon-box1.png" alt="" />
+              </i>
+              <div class="text">
+                <h4>公告通知</h4>
+                <span>Public notice</span>
+              </div>
+            </div>
+            <div class="case">
+              <i class="icon-diamond"></i>
             </div>
           </div>
-          <div class="case">
-            <i class="icon-diamond"></i>
-          </div>
-        </div>
-        <div class="line"></div>
-        <div class="content-box">
-          <div class="team-public">
-            <tabPublicList :TheList="ThePublicList"></tabPublicList>
+          <div class="line"></div>
+          <div class="content-box">
+            <div class="team-public">
+              <tabPublicList :TheList="ThePublicList"></tabPublicList>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="boxes">
-      <div class="truck-area">
-        <div class="top-title">
-          <div class="case">
-            <i class="icon-square">
-              <img src="@/assets/icon-box1.png" alt="" />
-            </i>
-            <div class="text">
-              <h4>视频流</h4>
-              <span>video streaming</span>
+      <div class="boxes">
+        <div class="truck-area">
+          <div class="top-title">
+            <div class="case">
+              <i class="icon-square">
+                <img src="@/assets/icon-box1.png" alt="" />
+              </i>
+              <div class="text">
+                <h4>视频流</h4>
+                <span>video streaming</span>
+              </div>
+            </div>
+            <div class="case">
+              <i class="icon-diamond"></i>
             </div>
           </div>
-          <div class="case">
-            <i class="icon-diamond"></i>
+          <div class="line"></div>
+          <div class="content-box">
+            <videoStreaming :TheList="videoSource"></videoStreaming>
           </div>
         </div>
-        <div class="line"></div>
-        <div class="content-box">
-          <videoStreaming :TheList="videoSource"></videoStreaming>
-        </div>
-      </div>
-      <div class="truck-area">
-        <div class="top-title">
-          <div class="case">
-            <i class="icon-square">
-              <img src="@/assets/icon-box1.png" alt="" />
-            </i>
-            <div class="text">
-              <h4>社区生活服务</h4>
-              <span>Community living service</span>
+        <div class="truck-area">
+          <div class="top-title">
+            <div class="case">
+              <i class="icon-square">
+                <img src="@/assets/icon-box1.png" alt="" />
+              </i>
+              <div class="text">
+                <h4>社区生活服务</h4>
+                <span>Community living service</span>
+              </div>
+            </div>
+            <div class="case">
+              <i class="icon-diamond"></i>
             </div>
           </div>
-          <div class="case">
-            <i class="icon-diamond"></i>
-          </div>
-        </div>
-        <div class="line"></div>
-        <div class="content-box">
-          <tabServeList :TheList="TheServeList"></tabServeList>
-        </div>
-      </div>
-    </div>
-    <div class="boxes">
-      <div class="truck-area">
-        <div class="top-title">
-          <div class="case">
-            <i class="icon-square">
-              <img src="@/assets/icon-box1.png" alt="" />
-            </i>
-            <div class="text">
-              <h4>网格员信息</h4>
-              <span>Grid operator information</span>
-            </div>
-          </div>
-          <div class="case">
-            <i class="icon-diamond"></i>
-          </div>
-        </div>
-        <div class="line"></div>
-        <div class="content-box">
-          <GridInformation :TheList="TheInformationList"></GridInformation>
-        </div>
-      </div>
-      <div class="truck-area">
-        <div class="top-title">
-          <div class="case">
-            <i class="icon-square">
-              <img src="@/assets/icon-box1.png" alt="" />
-            </i>
-            <div class="text">
-              <h4>上报事件统计</h4>
-              <span>Report event statistics</span>
-            </div>
-          </div>
-          <div class="case">
-            <i class="icon-diamond"></i>
-          </div>
-        </div>
-        <div class="line"></div>
-        <div class="content-box">
-          <div class="team-event">
-            <!-- 上报事件统计 -->
-            <EchartsTeamEvent :TheList="TheEventList"></EchartsTeamEvent>
+          <div class="line"></div>
+          <div class="content-box">
+            <tabServeList :TheList="TheServeList"></tabServeList>
           </div>
         </div>
       </div>
-      <div class="truck-area">
-        <div class="top-title">
-          <div class="case">
-            <i class="icon-square">
-              <img src="@/assets/icon-box1.png" alt="" />
-            </i>
-            <div class="text">
-              <h4>意见建议</h4>
-              <span>opinions and suggestions</span>
+      <div class="boxes">
+        <div class="truck-area">
+          <div class="top-title">
+            <div class="case">
+              <i class="icon-square">
+                <img src="@/assets/icon-box1.png" alt="" />
+              </i>
+              <div class="text">
+                <h4>网格员信息</h4>
+                <span>Grid operator information</span>
+              </div>
+            </div>
+            <div class="case">
+              <i class="icon-diamond"></i>
             </div>
           </div>
-          <div class="case">
-            <i class="icon-diamond"></i>
+          <div class="line"></div>
+          <div class="content-box">
+            <GridInformation :TheList="TheInformationList"></GridInformation>
           </div>
         </div>
-        <div class="line"></div>
-        <div class="content-box">
-          <GridOpinions :TheList="TheOpinionsList"></GridOpinions>
+        <div class="truck-area">
+          <div class="top-title">
+            <div class="case">
+              <i class="icon-square">
+                <img src="@/assets/icon-box1.png" alt="" />
+              </i>
+              <div class="text">
+                <h4>上报事件统计</h4>
+                <span>Report event statistics</span>
+              </div>
+            </div>
+            <div class="case">
+              <i class="icon-diamond"></i>
+            </div>
+          </div>
+          <div class="line"></div>
+          <div class="content-box">
+            <div class="team-event">
+              <!-- 上报事件统计 -->
+              <EchartsTeamEvent :TheList="TheEventList"></EchartsTeamEvent>
+            </div>
+          </div>
+        </div>
+        <div class="truck-area">
+          <div class="top-title">
+            <div class="case">
+              <i class="icon-square">
+                <img src="@/assets/icon-box1.png" alt="" />
+              </i>
+              <div class="text">
+                <h4>意见建议</h4>
+                <span>opinions and suggestions</span>
+              </div>
+            </div>
+            <div class="case">
+              <i class="icon-diamond"></i>
+            </div>
+          </div>
+          <div class="line"></div>
+          <div class="content-box">
+            <GridOpinions :TheList="TheOpinionsList"></GridOpinions>
+          </div>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div style="overflow: scroll; height: 100vh">
+    <div style="overflow-y: scroll; height: 100vh">
       <router-view v-slot="{ Component }">
         <keep-alive>
           <component :is="Component" />
@@ -36,16 +36,10 @@
 <script lang="ts" setup>
 import * as echarts from "echarts"
 import { provide } from "vue"
- 
 </script>
 
 <style lang="less">
 @import "./styles/basic.less";
 @import "@/styles/style.less";
 @import "./styles/tc.less";
-#app {
-  width: 100%;
-  height: 100%;
-}
-
 </style>
