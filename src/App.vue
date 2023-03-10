@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div style="overflow-y: scroll; height: 100vh">
+    <div class="containerMain">
       <router-view v-slot="{ Component }">
         <keep-alive>
           <component :is="Component" />
@@ -42,4 +42,25 @@ import { provide } from "vue"
 @import "./styles/basic.less";
 @import "@/styles/style.less";
 @import "./styles/tc.less";
+.containerMain {
+  max-height: 100vh;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
 </style>

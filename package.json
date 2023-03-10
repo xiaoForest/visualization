@@ -25,6 +25,7 @@
     "less": "^4.1.2",
     "pinia": "^2.0.26",
     "pnpm": "^7.27.0",
+    "swiper": "^9.1.0",
     "unplugin-auto-import": "^0.12.1",
     "vite-plugin-compression": "^0.4.0",
     "vite-plugin-style-import": "^1.4.0",
